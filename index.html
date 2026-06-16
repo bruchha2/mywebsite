@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex's Hub</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <p>This page is hosted on GitHub Pages.</p>
+
+    <div class="container">
+        <h1>Alex's Hub</h1>
+        <p>Personal Dashboard</p>
+
+        <div class="button-grid">
+            <a class="card" href="http://localhost:8096">
+                🎬 Jellyfin LAN
+            </a>
+            
+            <a class="card" href="https://document-county-approximate-daily.trycloudflare.com/">
+                🎬 Jellyfin Cloudflare (Temporary)
+            </a>
+            
+            <a class="card" href="#">
+                📁 Files
+            </a>
+
+            <a class="card" href="#">
+                ⚔️ Gaming
+            </a>
+
+            <a class="card" href="#">
+                🖥️ Homelab
+            </a>
+
+            <a class="card" href="#">
+                📓 Notes
+            </a>
+        </div>
+
+        <button id="themeButton">
+            Toggle Theme
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
