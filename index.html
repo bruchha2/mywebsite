@@ -6,62 +6,106 @@
     <title>Alex's Hub</title>
 
     <link rel="stylesheet" href="style.css">
+	
+	<style>
+		* {
+		  box-sizing: border-box;
+		}
+
+		body { margin:0; background:#000; color:white; font-family:Arial, Helvetica, sans-serif; }
+
+		header { width:100%; padding:40px 20px; }
+
+		.wrap { display:flex; flex-direction:column; align-items:center; gap:20px; }
+
+		.premdate { font-size:24px; letter-spacing:1px; text-align:center; }
+
+		.premdate b { color:#2f8f5b; }
+
+		.clock { display:flex; gap:15px; justify-content:center; }
+
+		.cell { background:#111; border:1px solid #333; border-radius:8px; width:110px; padding:15px 10px; text-align:center; box-shadow:0 0 20px rgba(255,255,255,.1); }
+
+		.n { font-size:48px; font-weight:bold; line-height:1; }
+
+		.l { margin-top:8px; text-transform:uppercase; font-size:14px; color:#aaa; letter-spacing:2px; }
+
+		@media (max-width:600px) {
+		  .clock { gap:8px; }
+		  .cell { width:75px; }
+		  .n { font-size:32px; }
+		  .premdate { font-size:18px; }
+		}
+	</style>
 </head>
+
+
 <body>
 
-    <div class="container">
-        <h1>Jellyfin Dashboard</h1>
-        <!--<p>Personal Dashboard</p>-->
+<header>
+  <div class="wrap">
+    <div class="premdate"><b>Avengers: Doomsday</b> premieres <b>Dec 18, 2026</b> in</div>
 
-        <div class="button-grid">
-            <a class="card" href="http://localhost:8096">
-                🛜 Jellyfin<br>
-                LAN
-            </a>
-            
-            <a class="card" href="https://optics-realize-organize-nylon.trycloudflare.com">
-                🎬 Jellyfin<br>
-                Cloudflare<br>
-                (Temporary)
-            </a>
-            
-            <a class="card" href="https://roadtodoomsday.com/">
-                🚛 Road to Doomsday<br>
-            </a>
-            
-            <a class="card" href="https://vuniper.com/movies">
-                🎞️ Vuniper<br>
-            </a>
-            
-            <a class="card" href="https://www.themoviedb.org/">
-                🗃️ The Movie Database<br>
-            </a>
+    <div class="clock" aria-label="Countdown to premiere">
+      <div class="cell"><div class="n" id="cd-d">136</div><div class="l">days</div></div>
+      <div class="cell"><div class="n" id="cd-h">3</div><div class="l">hours</div></div>
+      <div class="cell"><div class="n" id="cd-m">46</div><div class="l">mins</div></div>
+      <div class="cell"><div class="n" id="cd-s">44</div><div class="l">secs</div></div>
+    </div>
+  </div>
+</header>
 
-            <!--
-            <a class="card" href="#">
-                📁 Files
-            </a>
 
-            <a class="card" href="#">
-                ⚔️ Gaming
-            </a>
+<div class="container">
+    <h1>Jellyfin Dashboard</h1>
 
-            <a class="card" href="#">
-                🖥️ Homelab
-            </a>
+    <div class="button-grid">
+        <a class="card" href="http://localhost:8096">
+            🛜 Jellyfin<br>
+            LAN
+        </a>
 
-            <a class="card" href="#">
-                📓 Notes
-            </a>
-            -->
-        </div>
+        <a class="card" href="https://optics-realize-organize-nylon.trycloudflare.com">
+            🎬 Jellyfin<br>
+            Cloudflare<br>
+            (Temporary)
+        </a>
 
-        <button id="themeButton">
-            Toggle Theme
-        </button>
+        <a class="card" href="https://roadtodoomsday.com/">
+            🚛 Road to Doomsday
+        </a>
+
+        <a class="card" href="https://vuniper.com/movies">
+            🎞️ Vuniper
+        </a>
+
+        <a class="card" href="https://www.themoviedb.org/">
+            🗃️ The Movie Database
+        </a>
     </div>
 
-    <script src="script.js"></script>
+    <button id="themeButton">
+        Toggle Theme
+    </button>
+</div>
+
+
+<script src="script.js"></script>
+
+<script>
+const PREMIERE = new Date('2026-12-18T00:00:00');
+
+function tick(){
+  const diff = Math.max(0, PREMIERE - new Date());
+  document.getElementById('cd-d').textContent = Math.floor(diff / 86400000);
+  document.getElementById('cd-h').textContent = Math.floor(diff % 86400000 / 3600000);
+  document.getElementById('cd-m').textContent = Math.floor(diff % 3600000 / 60000);
+  document.getElementById('cd-s').textContent = Math.floor(diff % 60000 / 1000);
+}
+
+tick();
+setInterval(tick, 1000);
+</script>
 
 </body>
 </html>
